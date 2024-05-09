@@ -4,4 +4,4 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-ril = "0.10.1"
+ril = { version = "0.10.1", features = ["jpeg"] }
