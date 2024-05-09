@@ -97,13 +97,26 @@ fn map_coords_to_image_coords(image: &Image<Rgb>, map_x: i64, map_y: i64) -> (u3
 fn main() -> ril::Result<()> {
     // Define roads
     let roads = vec![
-        Road::new() // Great Southern Path
+        // Great Northern Path
+        Road::new()
+            .with_vertex(0, 7)
+            .with_vertex(0, 263),
+        // Great Eastern Path
+        Road::new()
+            .with_vertex(7, 0)
+            .with_vertex(220, 0),
+        // Great Southern Path
+        Road::new()
             .with_vertex(-5, -7)
             .with_vertex(-5, -137)
             .with_vertex(82, -137)
             .with_vertex(82, -325) // NE corner of Skjor's Bay
             .with_vertex(82, -429) // SE corner of Skjor's Bay
             .with_vertex(-38, -429),
+        // Great Western Path
+        Road::new()
+            .with_vertex(-7, 0)
+            .with_vertex(-264, 0),
     ];
 
     // Define buildings
