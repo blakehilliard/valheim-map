@@ -5,3 +5,5 @@ edition = "2021"
 
 [dependencies]
 ril = { version = "0.10.1", features = ["jpeg"] }
+serde = { version = "1.0.201", features = ["derive"] }
+toml = "0.8.12"

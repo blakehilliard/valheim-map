@@ -1,11 +1,16 @@
+use std::fs;
+
+use serde::{Deserialize, Serialize};
 use ril::{Draw, Image, Line, Polygon, Rgb};
 
+#[derive(Serialize, Deserialize)]
 pub struct Map {
     pub islands: Vec<Island>,
     pub bases: Vec<Base>,
     pub roads: Vec<Road>,
 }
 
+#[allow(dead_code)]
 impl Map {
     pub fn new() -> Self {
         Self {
@@ -13,6 +18,11 @@ impl Map {
             bases: Vec::<Base>::new(),
             roads: Vec::<Road>::new(),
         }
+    }
+
+    pub fn from_toml_file(path: &str) -> Self {
+        let contents = fs::read_to_string(path).expect("Failed to read file");
+        toml::from_str(&contents).unwrap()
     }
 
     pub fn set_islands(&mut self, islands: impl IntoIterator<Item = Island>) {
@@ -31,7 +41,6 @@ impl Map {
         // Create underlying image
         let water_rgb = Rgb::new(116, 204, 244);
         let map_radius = self.get_furthest_point_from_center() + 50;
-        println!("Map radius: {}", map_radius);
         let mut image = Image::new(map_radius*2, map_radius*2, water_rgb);
 
         // Draw islands
@@ -46,7 +55,6 @@ impl Map {
 
         // Draw buildings
         for base in &self.bases {
-            println!("Drawing {} at {},{}", base.name, base.x, base.y);
             base.draw(&mut image);
         }
 
@@ -65,11 +73,13 @@ impl Map {
     }
 }
 
+#[derive(Serialize, Deserialize)]
 pub struct Island {
     pub name: String,
     pub vertices: Vec<(i64, i64)>,
 }
 
+#[allow(dead_code)]
 impl Island {
     pub fn new(name: &str) -> Self {
         Self {
@@ -95,13 +105,14 @@ impl Island {
     }
 }
 
-#[derive(Debug)]
+#[derive(Serialize, Deserialize)]
 pub struct Base {
     pub name: String,
     pub x: i64,
     pub y: i64,
 }
 
+#[allow(dead_code)]
 impl Base {
     pub fn new(name: &str, x: i64, y: i64) -> Self {
         Self {
@@ -123,11 +134,12 @@ impl Base {
     }
 }
 
-#[derive(Debug)]
+#[derive(Serialize, Deserialize)]
 pub struct Road {
     pub vertices: Vec<(i64, i64)>,
 }
 
+#[allow(dead_code)]
 impl Road {
     pub fn new() -> Self {
         Self {
@@ -157,20 +169,20 @@ impl Road {
 // Do conversion from former to latter.
 fn map_coords_to_image_coords(image: &Image<Rgb>, map_x: i64, map_y: i64) -> (u32, u32) {
     let center = image.center();
-    println!("img center {:?} map coords {} {}", center, map_x, map_y); //FIXME
+
     let mut img_x = center.0;
     if map_x < 0 {
         img_x -= map_x.abs() as u32;
     } else {
         img_x += map_x.abs() as u32;
     }
-    println!("img_x: {}", img_x);
+
     let mut img_y = center.1;
     if map_y > 0 {
         img_y -= map_y.abs() as u32;
     } else {
         img_y += map_y.abs() as u32;
     }
-    println!("img_y: {}", img_y);
+
     (img_x, img_y)
 }

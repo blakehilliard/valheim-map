@@ -1,0 +1,74 @@
+[[islands]]
+name = "Mainland"
+vertices = [
+    [0, 263], # North Point
+    [220, 0], # East Point
+    [220, -540], # SE corner
+    [-80, -540], # West of smoke bridge
+    [-80, -429], # West of Skjor's Landing
+    [82, -429], # SE corner of Skjor's Bay
+    [82, -325], # NE corner of Skjor's Bay
+    # FIXME: add west peninsula from here
+    [82, -137], # Timberhold
+    [-264, -143], # SW point
+    [-264, 263]
+]
+
+[[bases]]
+name = "Last Resort"
+x = -10
+y = 3
+
+[[bases]]
+name = "Grig's Boulderheim"
+x = -2
+y = -10
+
+[[bases]]
+name = "Hrogden's Hrarbor"
+x = -20
+y = -137
+
+[[bases]]
+name = "Timberhold"
+x = 82
+y = -137
+
+[[bases]]
+name = "Skjor's Landing"
+x = -38
+y = -429
+
+[[bases]]
+# FIXME
+name = "Smokehaus"
+x = 15
+y = -708
+
+[[roads]] # Great Northern Path
+vertices = [[0, 7], [0, 263]]
+
+[[roads]] # Great Eastern Path
+vertices = [[7, 0], [220, 0]]
+
+[[roads]] # Great Southern Path
+vertices = [
+    [-5, -7],
+    [-5, -137],
+    [82, -137],
+    [82, -325], # NE corner of Skjor's Bay
+    [82, -429], # SE corner of Skjor's Bay
+    [-38, -429]
+]
+
+[[roads]] # Great Western Path
+vertices = [[-7, 0], [-264, 0]]
+
+[[roads]] # Road to Smokehaus
+vertices = [
+    [-30, -429], # Intersection with road by Skjor's Landing
+    [-30, -545], # North side of bridge
+    [-33, -567], # South side of bridge
+    [-23, -577],
+    [-23, -708] # Smoke sign
+]
