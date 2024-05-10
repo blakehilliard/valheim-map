@@ -1,21 +1,11 @@
-use ril::{Image, Rgb};
 mod valheim_map;
 use valheim_map::{Base, Road};
 
-fn get_furthest_point_from_center(bases: &[Base]) -> u32 {
-    let mut biggest: i64 = 0;
-    for base in bases {
-        let num = std::cmp::max(base.x.abs(), base.y.abs());
-        if num > biggest {
-            biggest = num;
-        }
-    }
-    biggest as u32
-}
+fn build_map() -> valheim_map::Map {
+    let mut map = valheim_map::Map::new();
 
-fn main() -> ril::Result<()> {
     // Define roads
-    let roads = vec![
+    map.set_roads(vec![
         // Great Northern Path
         Road::new()
             .with_vertex(0, 7)
@@ -36,34 +26,28 @@ fn main() -> ril::Result<()> {
         Road::new()
             .with_vertex(-7, 0)
             .with_vertex(-264, 0),
-    ];
+    ]);
 
     // Define buildings
-    let bases = vec![
+    map.set_bases(vec![
         Base::new("Last Resort", -10, 3),
         Base::new("Grig's Boulderheim", -2, -10),
         Base::new("Hrogden's Hrarbor", -20, -137),
         Base::new("Timberhold", 82, -137),
         Base::new("Skjor's Landing", -38, -429),
-    ];
+    ]);
 
-    // Create underlying image
-    let map_radius = get_furthest_point_from_center(&bases) + 50;
-    println!("Map radius: {}", map_radius);
-    let mut image = Image::new(map_radius*2, map_radius*2, Rgb::new(255, 255, 255));
+    map
+}
 
-    // Draw roads
-    for road in roads {
-        road.draw(&mut image);
-    }
+fn main() -> ril::Result<()> {
+    // Build map with data from our world
+    let map = build_map();
 
-    // Draw buildings
-    for base in bases {
-        println!("Drawing {} at {},{}", base.name, base.x, base.y);
-        base.draw(&mut image);
-    }
+    // Draw the map into a ril::Image.
+    let image = map.draw();
 
-    // Save image
+    // Save the image
     let path = "image.jpg";
     image.save_inferred(path)?;
     println!("Saved to {}", path);

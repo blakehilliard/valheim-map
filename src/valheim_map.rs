@@ -1,5 +1,58 @@
 use ril::{Draw, Image, Line, Polygon, Rgb};
 
+pub struct Map {
+    pub bases: Vec<Base>,
+    pub roads: Vec<Road>,
+}
+
+impl Map {
+    pub fn new() -> Self {
+        Self {
+            bases: Vec::<Base>::new(),
+            roads: Vec::<Road>::new(),
+        }
+    }
+
+    pub fn set_bases(&mut self, bases: impl IntoIterator<Item = Base>) {
+        self.bases = bases.into_iter().collect();
+    }
+
+    pub fn set_roads(&mut self, roads: impl IntoIterator<Item = Road>) {
+        self.roads = roads.into_iter().collect();
+    }
+
+    pub fn draw(&self) -> Image<Rgb> {
+        // Create underlying image
+        let map_radius = self.get_furthest_point_from_center() + 50;
+        println!("Map radius: {}", map_radius);
+        let mut image = Image::new(map_radius*2, map_radius*2, Rgb::new(255, 255, 255));
+
+        // Draw roads
+        for road in &self.roads {
+            road.draw(&mut image);
+        }
+
+        // Draw buildings
+        for base in &self.bases {
+            println!("Drawing {} at {},{}", base.name, base.x, base.y);
+            base.draw(&mut image);
+        }
+
+        image
+    }
+
+    fn get_furthest_point_from_center(&self) -> u32 {
+        let mut biggest: i64 = 0;
+        for base in &self.bases {
+            let num = std::cmp::max(base.x.abs(), base.y.abs());
+            if num > biggest {
+                biggest = num;
+            }
+        }
+        biggest as u32
+    }
+}
+
 #[derive(Debug)]
 pub struct Base {
     pub name: String,
@@ -16,9 +69,6 @@ impl Base {
     }
 
     pub fn draw(&self, image: &mut Image<Rgb>) {
-        // We store coords as if center is 0,0.
-        // Image has 0,0 has upper left corner.
-        // Do conversion.
         let center = map_coords_to_image_coords(&image, self.x, self.y);
         
         let poly = Polygon::new()
