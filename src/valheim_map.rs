@@ -1,6 +1,7 @@
 use ril::{Draw, Image, Line, Polygon, Rgb};
 
 pub struct Map {
+    pub islands: Vec<Island>,
     pub bases: Vec<Base>,
     pub roads: Vec<Road>,
 }
@@ -8,9 +9,14 @@ pub struct Map {
 impl Map {
     pub fn new() -> Self {
         Self {
+            islands: Vec::<Island>::new(),
             bases: Vec::<Base>::new(),
             roads: Vec::<Road>::new(),
         }
+    }
+
+    pub fn set_islands(&mut self, islands: impl IntoIterator<Item = Island>) {
+        self.islands = islands.into_iter().collect();
     }
 
     pub fn set_bases(&mut self, bases: impl IntoIterator<Item = Base>) {
@@ -23,9 +29,15 @@ impl Map {
 
     pub fn draw(&self) -> Image<Rgb> {
         // Create underlying image
+        let water_rgb = Rgb::new(116, 204, 244);
         let map_radius = self.get_furthest_point_from_center() + 50;
         println!("Map radius: {}", map_radius);
-        let mut image = Image::new(map_radius*2, map_radius*2, Rgb::new(255, 255, 255));
+        let mut image = Image::new(map_radius*2, map_radius*2, water_rgb);
+
+        // Draw islands
+        for island in &self.islands {
+            island.draw(&mut image);
+        }
 
         // Draw roads
         for road in &self.roads {
@@ -50,6 +62,36 @@ impl Map {
             }
         }
         biggest as u32
+    }
+}
+
+pub struct Island {
+    pub name: String,
+    pub vertices: Vec<(i64, i64)>,
+}
+
+impl Island {
+    pub fn new(name: &str) -> Self {
+        Self {
+            name: String::from(name),
+            vertices: Vec::<(i64, i64)>::new(),
+        }
+    }
+
+    pub fn with_vertex(mut self, x: i64, y: i64) -> Self {
+        self.vertices.push((x, y));
+        self
+    }
+
+    pub fn draw(&self, image: &mut Image<Rgb>) {
+        let color = Rgb::new(37, 255, 0);
+        let mut poly = Polygon::new().
+            with_fill(color);
+        for vertex in &self.vertices {
+            let coords = map_coords_to_image_coords(image, vertex.0, vertex.1);
+            poly.push_vertex(coords.0, coords.1);
+        }
+        poly.draw(image);
     }
 }
 
@@ -83,7 +125,7 @@ impl Base {
 
 #[derive(Debug)]
 pub struct Road {
-    vertices: Vec<(i64, i64)>,
+    pub vertices: Vec<(i64, i64)>,
 }
 
 impl Road {

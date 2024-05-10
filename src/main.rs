@@ -1,8 +1,24 @@
 mod valheim_map;
-use valheim_map::{Base, Road};
+use valheim_map::{Base, Island, Road};
 
 fn build_map() -> valheim_map::Map {
     let mut map = valheim_map::Map::new();
+
+    // Define islands
+    map.set_islands(vec![
+        Island::new("Mainland")
+            .with_vertex(0, 263) // North Point
+            .with_vertex(220, 0) // East Point
+            .with_vertex(220, -540) // SE corner
+            .with_vertex(-80, -540) // West of smoke bridge
+            .with_vertex(-80, -429) // West of Skjor's Landing
+            .with_vertex(82, -429) // SE corner of Skjor's Bay
+            .with_vertex(82, -325) // NE corner of Skjor's Bay
+            // FIXME: add west peninsula from here
+            .with_vertex(82, -137) // Timberhold
+            .with_vertex(-264, -143) // SW point
+            .with_vertex(-264, 263),
+    ]);
 
     // Define roads
     map.set_roads(vec![
