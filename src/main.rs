@@ -26,6 +26,13 @@ fn build_map() -> valheim_map::Map {
         Road::new()
             .with_vertex(-7, 0)
             .with_vertex(-264, 0),
+        // Road to Smokehaus
+        Road::new()
+            .with_vertex(-30, -429) // Intersection with road to Timberhold
+            .with_vertex(-30, -545) // North side of bridge
+            .with_vertex(-33, -567) // South side of bridge
+            .with_vertex(-23, -577)
+            .with_vertex(-23, -708), // Smoke sign
     ]);
 
     // Define buildings
@@ -35,6 +42,7 @@ fn build_map() -> valheim_map::Map {
         Base::new("Hrogden's Hrarbor", -20, -137),
         Base::new("Timberhold", 82, -137),
         Base::new("Skjor's Landing", -38, -429),
+        Base::new("Smokehaus", 15, -708), // FIXME
     ]);
 
     map
