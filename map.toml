@@ -40,6 +40,21 @@ x = -38
 y = -429
 
 [[bases]]
+name = "Graveyard"
+x = 35
+y = 14
+
+[[bases]]
+name = "Hrog's Den"
+x = 117
+y = -9
+
+[[bases]]
+name = "Hag Hut"
+x = 220
+y = -25
+
+[[bases]]
 # FIXME
 name = "Smokehaus"
 x = 15
