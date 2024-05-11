@@ -65,7 +65,7 @@ impl Map {
     fn get_furthest_point_from_center(&self) -> u32 {
         let mut biggest: i64 = 0;
         for base in &self.bases {
-            let num = std::cmp::max(base.x.abs(), base.y.abs());
+            let num = std::cmp::max(base.point.0.abs(), base.point.1.abs());
             if num > biggest {
                 biggest = num;
             }
@@ -110,8 +110,7 @@ impl Island {
 #[derive(Serialize, Deserialize)]
 pub struct Base {
     pub name: String,
-    pub x: i64,
-    pub y: i64,
+    pub point: (i64, i64), // x, y location
 }
 
 impl Base {
@@ -119,13 +118,13 @@ impl Base {
     pub fn new(name: &str, x: i64, y: i64) -> Self {
         Self {
             name: String::from(name),
-            x, y,
+            point: (x, y),
         }
     }
     */
 
     pub fn draw(&self, image: &mut Image<Rgb>) {
-        let center = map_coords_to_image_coords(&image, self.x, self.y);
+        let center = map_coords_to_image_coords(&image, self.point.0, self.point.1);
         
         let poly = Polygon::new()
             .with_fill(Rgb::black())

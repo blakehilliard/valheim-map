@@ -16,49 +16,39 @@ vertices = [
 
 [[bases]]
 name = "Last Resort"
-x = -10
-y = 3
+point = [-10, 3]
 
 [[bases]]
 name = "Grig's Boulderheim"
-x = -2
-y = -10
+point = [-2, -10]
 
 [[bases]]
 name = "Hrogden's Hrarbor"
-x = -20
-y = -137
+point = [-20, -137]
 
 [[bases]]
 name = "Timberhold"
-x = 82
-y = -137
+point = [82, -137]
 
 [[bases]]
 name = "Skjor's Landing"
-x = -38
-y = -429
+point = [-38, -429]
 
 [[bases]]
 name = "Graveyard"
-x = 35
-y = 14
+point = [35, 14]
 
 [[bases]]
 name = "Hrog's Den"
-x = 117
-y = -9
+point = [117, -9]
 
 [[bases]]
 name = "Hag Hut"
-x = 220
-y = -25
+point = [220, -25]
 
 [[bases]]
-# FIXME
 name = "Smokehaus"
-x = 15
-y = -708
+point = [15, -708] # FIXME
 
 [[roads]] # Great Northern Path
 points = [[0, 7], [0, 263]]
