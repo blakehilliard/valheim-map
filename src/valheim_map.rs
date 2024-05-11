@@ -139,7 +139,7 @@ impl Base {
 
 #[derive(Serialize, Deserialize)]
 pub struct Road {
-    pub vertices: Vec<(i64, i64)>,
+    pub points: Vec<(i64, i64)>,
 }
 
 impl Road {
@@ -157,9 +157,9 @@ impl Road {
     */
 
     pub fn draw(&self, image: &mut Image<Rgb>) {
-        for idx in 0..self.vertices.len()-1 {
-            let a = map_coords_to_image_coords(image, self.vertices[idx].0, self.vertices[idx].1);
-            let b = map_coords_to_image_coords(image, self.vertices[idx+1].0, self.vertices[idx+1].1);
+        for idx in 0..self.points.len()-1 {
+            let a = map_coords_to_image_coords(image, self.points[idx].0, self.points[idx].1);
+            let b = map_coords_to_image_coords(image, self.points[idx+1].0, self.points[idx+1].1);
             let brown = Rgb::new(0x96, 0x4b, 0x00);
             Line::new(a, b, brown)
                 .with_thickness(3)
