@@ -3,7 +3,16 @@ name = "Mainland"
 vertices = [
     [0, 263], # North Point
     [220, 0], # East Point
-    [220, -540], # SE corner
+    [235, -25], # by Hag Hut
+    [273, -63],
+    [439, -63],
+    [439, -206],
+    [165, -206], # Valsvig Shanty
+    [109, -230], # shore by Elder Way / Timberhold crossroad
+    [91, -248],
+     #FIXME coast moves in?
+    [91, -598], # SE corner where you can see mini swamp island
+
     [-80, -540], # West of smoke bridge
     [-80, -429], # West of Skjor's Landing
     [82, -429], # SE corner of Skjor's Bay
