@@ -62,6 +62,10 @@ point = [250, -206]
 name = "Smokehaus"
 point = [15, -708] # FIXME
 
+[[bases]]
+name = "The Elder"
+point = [23, -500]
+
 [[roads]] # Great Northern Path
 points = [[0, 7], [0, 263]]
 
@@ -89,3 +93,6 @@ points = [
     [-23, -577],
     [-23, -708] # Smoke sign
 ]
+
+[[roads]] # Smokehouse junction to Elder
+points = [[-30, -500], [27, -500]] # FIXME: -500 was a guess
