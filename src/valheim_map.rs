@@ -10,19 +10,19 @@ pub struct Map {
     pub roads: Vec<Road>,
 }
 
-#[allow(dead_code)]
 impl Map {
+    pub fn from_toml_file(path: &str) -> Self {
+        let contents = fs::read_to_string(path).expect("Failed to read file");
+        toml::from_str(&contents).unwrap()
+    }
+
+    /*
     pub fn new() -> Self {
         Self {
             islands: Vec::<Island>::new(),
             bases: Vec::<Base>::new(),
             roads: Vec::<Road>::new(),
         }
-    }
-
-    pub fn from_toml_file(path: &str) -> Self {
-        let contents = fs::read_to_string(path).expect("Failed to read file");
-        toml::from_str(&contents).unwrap()
     }
 
     pub fn set_islands(&mut self, islands: impl IntoIterator<Item = Island>) {
@@ -36,6 +36,7 @@ impl Map {
     pub fn set_roads(&mut self, roads: impl IntoIterator<Item = Road>) {
         self.roads = roads.into_iter().collect();
     }
+    */
 
     pub fn draw(&self) -> Image<Rgb> {
         // Create underlying image
@@ -79,8 +80,8 @@ pub struct Island {
     pub vertices: Vec<(i64, i64)>,
 }
 
-#[allow(dead_code)]
 impl Island {
+    /*
     pub fn new(name: &str) -> Self {
         Self {
             name: String::from(name),
@@ -92,6 +93,7 @@ impl Island {
         self.vertices.push((x, y));
         self
     }
+    */
 
     pub fn draw(&self, image: &mut Image<Rgb>) {
         let color = Rgb::new(37, 255, 0);
@@ -112,14 +114,15 @@ pub struct Base {
     pub y: i64,
 }
 
-#[allow(dead_code)]
 impl Base {
+    /*
     pub fn new(name: &str, x: i64, y: i64) -> Self {
         Self {
             name: String::from(name),
             x, y,
         }
     }
+    */
 
     pub fn draw(&self, image: &mut Image<Rgb>) {
         let center = map_coords_to_image_coords(&image, self.x, self.y);
@@ -139,8 +142,8 @@ pub struct Road {
     pub vertices: Vec<(i64, i64)>,
 }
 
-#[allow(dead_code)]
 impl Road {
+    /*
     pub fn new() -> Self {
         Self {
             vertices: Vec::<(i64, i64)>::new(),
@@ -151,6 +154,7 @@ impl Road {
         self.vertices.push((x, y));
         self
     }
+    */
 
     pub fn draw(&self, image: &mut Image<Rgb>) {
         for idx in 0..self.vertices.len()-1 {
