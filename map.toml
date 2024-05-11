@@ -2,19 +2,19 @@
 name = "Mainland"
 vertices = [
     [0, 263], # North Point
+    [220, 263], # FIXME: Temporary for NE quadrant
     [220, 0], # East Point
     [235, -25], # by Hag Hut
     [273, -63],
     [439, -63],
     [439, -206],
-    [165, -206], # Valsvig Shanty
-    [109, -230], # shore by Elder Way / Timberhold crossroad
-    [91, -248],
-     #FIXME coast moves in?
-    [91, -598], # SE corner where you can see mini swamp island
+     #FIXME VERY IFFY AROUND HERE
+    [250, -206], # Valsvig Shanty
+    [200, -248],
+    [200, -598], # SE corner where you can see mini swamp island
     [-80, -540], # West of smoke bridge
-    [-80, -429], # West of Skjor's Landing
-    [75, -429], # SE corner of Skjor's Bay
+    [-80, -424], # West of Skjor's Landing
+    [75, -424], # SE corner of Skjor's Bay
     [75, -325], # NE corner of Skjor's Bay
     [-38, -325], # NW corner of Skjor's Bay
     [82, -137], # Timberhold
@@ -53,6 +53,10 @@ point = [117, -9]
 [[bases]]
 name = "Hag Hut"
 point = [220, -25]
+
+[[bases]]
+name = "Valsvig Shanty"
+point = [250, -206]
 
 [[bases]]
 name = "Smokehaus"
