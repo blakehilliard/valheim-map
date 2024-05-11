@@ -12,12 +12,11 @@ vertices = [
     [91, -248],
      #FIXME coast moves in?
     [91, -598], # SE corner where you can see mini swamp island
-
     [-80, -540], # West of smoke bridge
     [-80, -429], # West of Skjor's Landing
-    [82, -429], # SE corner of Skjor's Bay
-    [82, -325], # NE corner of Skjor's Bay
-    # FIXME: add west peninsula from here
+    [75, -429], # SE corner of Skjor's Bay
+    [75, -325], # NE corner of Skjor's Bay
+    [-38, -325], # NW corner of Skjor's Bay
     [82, -137], # Timberhold
     [-264, -143], # SW point
     [-264, 263]
