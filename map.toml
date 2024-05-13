@@ -11,7 +11,7 @@ vertices = [
      #FIXME VERY IFFY AROUND HERE
     [250, -206], # Valsvig Shanty
     [200, -248],
-    [200, -598], # SE corner where you can see mini swamp island
+    [200, -540], # SE corner where you can see mini swamp island
     [-80, -540], # West of smoke bridge
     [-80, -424], # West of Skjor's Landing
     [75, -424], # SE corner of Skjor's Bay
