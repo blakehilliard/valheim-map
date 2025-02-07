@@ -4,14 +4,20 @@ vertices = [
     [0, 263], # North Point
     [220, 263], # FIXME: Temporary for NE quadrant
     [220, 0], # East Point
-    [235, -25], # by Hag Hut
-    [273, -63],
-    [439, -63],
-    [439, -206],
-     #FIXME VERY IFFY AROUND HERE
-    [250, -206], # Valsvig Shanty
+    [235, -24], # by Hag Hut
+    [272, -61], # [235, -25] -> [273, -63]
+    [383, -61], # [273, -63] -> [439, -63]
+    [383, -198], # [439, -63] -> [439, -206]
+    #FIXME VERY IFFY AROUND HERE
+    [120, -198], # Valsvig Shanty #jogsecs W: 274 to Valsvig Shanty   -> 263
+    #FIXME: BEGIN NEED UPDATE
+    #jogsecs SW: 26 -> 25
     [200, -248],
+    #jogsecs S: 350 (this was like 30js inland most of the time, coast 30js to east)
+    #  ^ This is a corner where you can see the mini swamp island
+    #   -> 336
     [200, -540], # SE corner where you can see mini swamp island
+    #FIXME: END NEED UPDATE
     [-80, -540], # West of smoke bridge
     [-80, -424], # West of Skjor's Landing
     [75, -424], # SE corner of Skjor's Bay
@@ -21,6 +27,9 @@ vertices = [
     [-264, -143], # SW point
     [-264, 263]
 ]
+
+
+
 
 [[bases]]
 name = "Last Resort"
@@ -44,19 +53,19 @@ point = [-38, -429]
 
 [[bases]]
 name = "Graveyard"
-point = [35, 14]
+point = [34, 13]
 
 [[bases]]
 name = "Hrog's Den"
-point = [117, -9]
+point = [112, -9]
 
 [[bases]]
 name = "Hag Hut"
-point = [220, -25]
+point = [220, -24]
 
 [[bases]]
 name = "Valsvig Shanty"
-point = [250, -206]
+point = [120, -198]
 
 [[bases]]
 name = "Smokehaus"
